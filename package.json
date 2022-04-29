@@ -4,6 +4,7 @@
     "@discordjs/voice": "^0.8.0",
     "discord-tts": "^1.2.1",
     "discord.js": "^13.6.0",
+    "g-i-s": "^2.1.6",
     "googletrans": "^1.0.4",
     "tweetnacl": "^1.0.3",
     "winston": "^3.7.2"
