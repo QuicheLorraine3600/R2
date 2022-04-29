@@ -1,8 +1,8 @@
 const fs = require("fs");
 
-const DATA_DIRECTORY = "./cache/"
+const DATA_DIRECTORY = "./datas/"
 
-class CustomCache {
+class DataSaver {
 
 	#memory
 
@@ -14,12 +14,10 @@ class CustomCache {
 
 		this.#memory = new Map();
 
-		const cacheFiles = fs.readdirSync(DATA_DIRECTORY).filter(file => file.endsWith('.json'));
-		for (const file of cacheFiles){
-			if (!file.startsWith("-")){
-				const cacheFile = require("../" + DATA_DIRECTORY + file);
-				this.#memory.set(cacheFile.name, cacheFile.content);
-			}
+		const dataFiles = fs.readdirSync(DATA_DIRECTORY).filter(file => file.endsWith('.json') && !file.startsWith("-"));
+		for (const file of dataFiles){
+			const cacheFile = require("../" + DATA_DIRECTORY + file);
+			this.#memory.set(cacheFile.name, cacheFile.content);
 		}
 	}
 
@@ -61,4 +59,4 @@ class CustomCache {
 
 }
 
-module.exports = {CustomCache}
+module.exports = {DataSaver}
