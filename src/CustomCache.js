@@ -1,6 +1,6 @@
 const fs = require("fs");
 
-const CACHE_DIRECTORY = "./cache/"
+const DATA_DIRECTORY = "./cache/"
 
 class CustomCache {
 
@@ -14,10 +14,10 @@ class CustomCache {
 
 		this.#memory = new Map();
 
-		const cacheFiles = fs.readdirSync(CACHE_DIRECTORY).filter(file => file.endsWith('.json'));
+		const cacheFiles = fs.readdirSync(DATA_DIRECTORY).filter(file => file.endsWith('.json'));
 		for (const file of cacheFiles){
 			if (!file.startsWith("-")){
-				const cacheFile = require("../" + CACHE_DIRECTORY + file);
+				const cacheFile = require("../" + DATA_DIRECTORY + file);
 				this.#memory.set(cacheFile.name, cacheFile.content);
 			}
 		}
@@ -43,7 +43,7 @@ class CustomCache {
 	}
 
 	save(key) {
-		fs.writeFile(CACHE_DIRECTORY + key + ".json", JSON.stringify({name: key, content: this.#memory.get(key)}, null, 4), 'utf8', function (err) {
+		fs.writeFile(DATA_DIRECTORY + key + ".json", JSON.stringify({name: key, content: this.#memory.get(key)}, null, 4), 'utf8', function (err) {
 			if (err) {
 				console.log("An error occured while writing JSON Object to File.");
 				return console.log(err);
