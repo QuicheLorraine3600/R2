@@ -17,7 +17,7 @@ class Bot extends Discord.Client {
 		this.#commandHandler = new CommandHandler(this, commandPrefix, config);
 	}
 
-	customCache() {
+	dataSaver() {
 		return this.#dataSaver;
 	}
 }
