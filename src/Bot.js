@@ -22,7 +22,4 @@ class Bot extends Discord.Client {
 	}
 }
 
-
-
-
 module.exports = { Bot }
