@@ -11,7 +11,7 @@ class Translate extends Command {
 
 	async execute(message, args, discord_bot, config) {
 		if (args.length === 0) return ["MISSING_ARGUMENT"]
-
+		message.delete();
 		translate(args.join(" "), { from: "fr", to: "ru" }).then((res) => {
 			WebhookMessage.sendMessageToChannelWithMember(this._discordBot, message.channel, message.member, res.text);
 		})
