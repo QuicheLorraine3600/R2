@@ -13,7 +13,6 @@ module.exports = [
 				catch (error){
 					message.reply("code executé avec l'erreur suivante: ```\n" + error + "\n```")
 				}
-				
 			}
 		}
 	}
