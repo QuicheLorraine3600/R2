@@ -16,8 +16,7 @@ import Connect from "./src/Connect"
 import Remorquer from "./src/Remorquer"
 import CrazyFrog from "./src/CrazyFrog"
 import Overwatch from "./src/Overwatch"
-
-
+import LethalCompany from "./src/LethalCompany"
 
 export default List<Command>([
 	new Help(),
@@ -32,5 +31,6 @@ export default List<Command>([
 	new Connect(),
 	new Remorquer(),
 	new CrazyFrog(),
-	new Overwatch()
+	new Overwatch(),
+	new LethalCompany()
 ])
