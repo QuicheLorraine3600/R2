@@ -1,4 +1,4 @@
-const HOST = "ws://45.155.170.216:8888:8888/soundboardsocket"
+const HOST = "ws://45.155.170.216:8888/soundboardsocket"
 const socket = new WebSocket(HOST);
 
 function sendMessage(messageObject) {
