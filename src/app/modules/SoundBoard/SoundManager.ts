@@ -54,7 +54,6 @@ soundManagerRouter.post("/addSound", upload.single("soundFile"), (req, res, next
 	DB.serialize(() => {
 		const stmt = DB.prepare("INSERT INTO sounds (name, file, author) VALUES (?, ?, ?)");
 
-		console.log("running")
 		// @ts-ignore
 		stmt.run(req.body.name, req.file.filename, req.body.author, function(err) {
 			// @ts-ignore
