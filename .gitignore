@@ -1,7 +1,7 @@
-.vscode/
-.idea/
-node_modules/
+dist/
 logs/
-cache/
-datas/
-package-lock.json
+node_modules/
+db.sqlite
+*.bat
+*.bash
+ecosystem.config.js

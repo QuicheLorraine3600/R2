@@ -1,0 +1,90 @@
+:root {
+	--main-background-color: rgb(23, 23, 23);
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	font-family: Helvetica, sans-serif;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 10px;
+
+	background-color: var(--main-background-color);
+}
+
+#Title {
+	/* text-align: center; */
+	padding-top: 10px;
+	color: white;
+}
+
+#DeleteButton {
+	position: fixed;
+	top: 0;
+	right: 0;
+}
+
+#SoundList {
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	align-content: flex-start;
+	gap: 10px;
+	flex-shrink: 0;
+	flex-wrap: wrap;
+
+	margin: 0 7%;
+	/* justify-content: space-around; */
+
+	border-radius: 15px;
+	/* background-color: red; */
+
+	min-height: 100vh;
+}
+
+.Sound {
+
+	display: inline-flex;
+	padding: 10px 60px;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	border-radius: 50px;
+	background: #080917;
+
+	color: white;
+
+	/* border: none; */
+	cursor: pointer;
+}
+
+.SoundAuthor {
+	font-style: italic;
+}
+
+#BottomBar {
+	display: flex;
+	flex-direction: row;
+
+	justify-content: space-between;
+
+	width: 100%;
+
+	position: sticky;
+	bottom: 0;
+
+	color: white;
+
+	background: #030309;
+}
+
+#AddSound {
+	display: flex;
+	flex-direction: column;
+}

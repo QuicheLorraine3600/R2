@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>SoundBot</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<link rel="stylesheet" href="style.css">
+	</head>
+
+	<style>
+	</style>
+
+	<body>
+
+		<h1 id="Title">SoundBot</h1>
+
+		<button id="DeleteButton" onclick="toggleDeleteMode()">Supprimer</button>
+
+		<div id="SoundList">
+			<!-- <button class="Sound"><h4 class="SoundName">Sound Name</h4><h5 class="SoundAuthor">by Monkey Prince</h5></button> -->
+		</div>
+
+
+		<div id="BottomBar">
+			<div id="CurrentSound">
+				<h3>Current Sound:</h3>
+				<h4 id="CurrentSoundName">Sound Name</h4>
+				<h5 id="CurrentSoundAuthor">by Monkey Prince</h5>
+			</div>
+
+			<div id="SoundController">
+				<button onclick="stopSound()">Stop</button>
+			</div>
+
+			<form id="AddSound" action="addSound" method="post" enctype="multipart/form-data" >
+				<h5>Add a new sound:</h5>
+				<div>
+					<label for="name">Sound name: </label>
+					<input type="text" name="name" id="name" required />
+				</div>
+				<div>
+					<label for="file">Choose sound to upload</label>
+					<input type="file" id="file" name="soundFile" />
+				</div>
+				<div>
+					<label for="author">Author: </label>
+					<input type="text" name="author" id="author" required />
+				</div>
+				<button>Send</button>
+			</form>
+
+		</div>
+
+
+		<!-- <div id="Bottom">
+			<div id="CurrentSound">
+
+			</div>
+			<form id="AddSound" action="addSound" method="post" enctype="multipart/form-data" >
+				<div>
+					<label for="name">Sound name: </label>
+					<input type="text" name="name" id="name" required />
+				</div>
+				<div>
+					<label for="file">Choose sound to upload</label>
+					<input type="file" id="file" name="soundFile" />
+				</div>
+				<div>
+					<label for="author">Author: </label>
+					<input type="text" name="author" id="author" required />
+				</div>
+				<div>
+					<button>Submit</button>
+				</div>
+			</form>
+		</div> -->
+	</body>
+
+	<script src="client.js"></script>
+</html>
