@@ -1,4 +1,4 @@
-const HOST = "ws://localhost:8080/soundboardsocket"
+const HOST = "ws://localhost:8888/soundboardsocket"
 const socket = new WebSocket(HOST);
 
 function sendMessage(messageObject) {
