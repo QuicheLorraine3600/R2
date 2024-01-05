@@ -22,7 +22,7 @@ export default class EventHandler {
 			loadMessagesFromDB(bot)
 
 			// Our beloved daily quote at 7 am
-			registerChannelCronTask(bot, "670966543542386708", "670981239112597545", "0 7 * * *", (channel) => {
+			registerChannelCronTask(bot, "670966543542386708", "727952301527924796", "0 7 * * *", (channel) => {
 				if (channel instanceof TextChannel) {
 					getDailyQuote().then(quote => {
 						getEmbedOfQuote(quote).then(embed => {

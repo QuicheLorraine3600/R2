@@ -1,6 +1,7 @@
 dist/
 logs/
 node_modules/
+public/sounds/
 db.sqlite
 *.bat
 *.bash
