@@ -36,20 +36,30 @@ function addSound(sound) {
 	SOUND_LIST.appendChild(newButton)
 }
 
+const DELETE_BUTTON = document.getElementById("DeleteButton")
+const RED_BUTTON_CLASS = document.createElement("style")
+RED_BUTTON_CLASS.innerHTML = ".Sound {background-color: red}";
 let deleteMode = false
 function toggleDeleteMode() {
 	if (deleteMode == false) {
 		deleteMode = true;
+		DELETE_BUTTON.innerText = "Play Mode"
+
+		document.body.appendChild(RED_BUTTON_CLASS)
 		// TODO: CHANGE COLORS
 	} else {
 		deleteMode = false
+		DELETE_BUTTON.innerText = "Delete Mode"
+
+		document.body.removeChild(RED_BUTTON_CLASS)
 		// TODO: CHANGE COLORS
 	}
-
 }
+
+
 function handleButton(soundId) {
 	if (deleteMode) {
-		window.location.href = "/delete/" + soundId
+		window.location.href = "/removeSound/" + soundId
 	} else {
 		playSound(soundId)
 	}

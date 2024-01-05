@@ -3,6 +3,7 @@ import http from "http";
 
 import { AudioPlayer, createAudioResource } from "@discordjs/voice";
 import { SOUNDBOARD_SERVER, SoundMap } from "./SoundBoardServer";
+import { Sound } from "./SoundManager";
 
 export default class SoundBoardWebSocketServer {
 
@@ -44,14 +45,14 @@ export default class SoundBoardWebSocketServer {
 		})
 	}
 
-	addSound(sound: SoundMap) {
+	addSound(sound: Sound) {
 		this.broadcast({
 			type: "AddSound",
 			sound: sound
 		})
 	}
 
-	removeSound(sound: SoundMap) {
+	removeSound(sound: Sound) {
 		this.broadcast({
 			type: "RemoveSound",
 			sound: sound

@@ -52,12 +52,12 @@ class SoundBoardServer {
 
 	addSound(sound: Sound) {
 		this.soundMap[sound.id] = sound
-		this.wss.addSound(this.soundMap)
+		this.wss.addSound(sound)
 	}
 
 	removeSound(sound: Sound) {
 		delete this.soundMap[sound.id]
-		this.wss.removeSound(this.soundMap)
+		this.wss.removeSound(sound)
 	}
 
 }
