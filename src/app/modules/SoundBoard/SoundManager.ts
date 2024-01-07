@@ -17,7 +17,7 @@ const upload = multer({
 		cb(null, supportedExtensions.includes(extname(file.originalname).toLocaleLowerCase()) && supportedMimeTypes.includes(file.mimetype))
 	},
 	limits: {
-		fileSize: 5 * 1024 * 1024 //5Mo
+		fileSize: 15 * 1024 * 1024 //15Mo
 	},
 	storage: multer.diskStorage({
 		destination: function (req, file, cb) {
