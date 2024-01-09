@@ -17,6 +17,7 @@ import Remorquer from "./src/Remorquer"
 import CrazyFrog from "./src/CrazyFrog"
 import Overwatch from "./src/Overwatch"
 import LethalCompany from "./src/LethalCompany"
+import Send from "./src/Send"
 
 export default List<Command>([
 	new Help(),
@@ -32,5 +33,6 @@ export default List<Command>([
 	new Remorquer(),
 	new CrazyFrog(),
 	new Overwatch(),
-	new LethalCompany()
+	new LethalCompany(),
+	new Send()
 ])
