@@ -2,10 +2,20 @@ import { Router } from "express";
 import multer from "multer"
 import { extname } from "path"
 
+import logger from "../Logger";
 import { DB } from "../Database"
 import { SOUNDBOARD_SERVER } from "./SoundBoardServer";
 
 import { unlink } from "fs"
+
+
+DB.run('CREATE TABLE "sounds" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" TEXT NOT NULL, "author" TEXT NOT NULL, category TEXT NOT NULL, "src" TEXT NOT NULL)', (err) => {
+	if (err) {
+		logger.info("SQL: table sounds already created")
+	} else {
+		logger.info("SQL: table sounds created")
+	}
+})
 
 const UPLOAD_PATH = "./public/sounds/"
 
@@ -36,8 +46,9 @@ export const soundManagerRouter = Router()
 export interface Sound {
 	id: number,
 	name: string,
-	file: string,
-	author: string
+	author: string,
+	category: string,
+	src: string
 }
 
 soundManagerRouter.post("/addSound", upload.single("soundFile"), (req, res, next) => {
@@ -45,19 +56,19 @@ soundManagerRouter.post("/addSound", upload.single("soundFile"), (req, res, next
 		res.send("NO FILE")
 		return
 	}
-	if (req.body.name === undefined || req.body.author === undefined) {
+	if (!req.body.name || !req.body.author || !req.body.category) {
 		unlink(UPLOAD_PATH + req.file.filename, err => {})
 		res.send("MISSING FIELDS")
 		return
 	}
 
 	DB.serialize(() => {
-		const stmt = DB.prepare("INSERT INTO sounds (name, file, author) VALUES (?, ?, ?)");
+		const stmt = DB.prepare("INSERT INTO sounds (name, author, category, src) VALUES (?, ?, ?, ?)");
 
 		// @ts-ignore
-		stmt.run(req.body.name, req.file.filename, req.body.author, function(err) {
+		stmt.run(req.body.name, req.body.author, req.body.category, req.file.filename, function(err) {
 			// @ts-ignore
-			const sound = {id: this.lastID, name: req.body.name, file: req.file.filename, author: req.body.author}
+			const sound = {id: this.lastID, name: req.body.name, author: req.body.author, category: req.body.category, src: req.file.filename}
 			SOUNDBOARD_SERVER.addSound(sound)
 			// @ts-ignore
 			res.redirect("/?lastId=" + this.lastID)
@@ -69,7 +80,7 @@ soundManagerRouter.get("/removeSound/:soundId" , (req, res, next) => {
 	DB.serialize(() => {	
 		const stmt = DB.prepare("SELECT * FROM SOUNDS WHERE id = ?")
 		stmt.run(req.params.soundId).each((err, sound: Sound) => {
-			unlink(UPLOAD_PATH + sound.file, err => console.log)
+			unlink(UPLOAD_PATH + sound.src, err => console.log)
 			const stmt = DB.prepare("DELETE FROM sounds WHERE id = ?");		
 			stmt.run(req.params.soundId)
 
@@ -79,3 +90,13 @@ soundManagerRouter.get("/removeSound/:soundId" , (req, res, next) => {
 		})
 	});
 })
+
+export type SoundMap = { [id: number] : Sound; }
+
+export function getSoundMap(target: SoundMap) {
+	DB.serialize(() => {			
+		DB.each("SELECT * FROM sounds", (err, sound: Sound) => {
+			target[sound.id] = sound
+		});
+	});
+}

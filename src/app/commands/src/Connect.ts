@@ -27,7 +27,7 @@ export default class Connect extends Command {
 
 		const connection = connectToVoiceChannel(voiceChannel);
 		connection.subscribe(SOUNDBOARD_SERVER.audioPlayer)
-		interaction.reply("Salon actuel rejoint !")
+		interaction.reply("Salon actuel rejoint ! SoundBoard accessible ici: http://mathilde-hugues.art:8888/")
 	}
 }
 

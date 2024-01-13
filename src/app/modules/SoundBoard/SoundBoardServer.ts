@@ -2,20 +2,14 @@ import http from "http"
 
 import express, { Express } from "express"
 
-const { createAudioPlayer } = require('@discordjs/voice');
+import { AudioPlayer, createAudioPlayer } from "@discordjs/voice";
 
 import SoundBoardWebSocketServer from "./SoundBoardWebSocketServer"
-import { Sound, soundManagerRouter } from "./SoundManager"
+import { Sound, soundManagerRouter, SoundMap, getSoundMap } from "./SoundManager"
 
-import { AudioPlayer } from "@discordjs/voice";
-
-
-import DB from "../Database";
 import logger from "../Logger";
 
 const app = express()
-
-export type SoundMap = { [id: number] : Sound; }
 
 class SoundBoardServer {
 
@@ -30,12 +24,7 @@ class SoundBoardServer {
 		this.app = app
 		this.audioPlayer = createAudioPlayer();
 		this.soundMap = {}
-
-		DB.serialize(() => {			
-			DB.each("SELECT * FROM sounds", (err, sound: Sound) => {
-				SOUNDBOARD_SERVER.soundMap[sound.id] = sound
-			});
-		});
+		getSoundMap(this.soundMap)
 
 		this.app.use(express.static('public'))
 		this.app.use(soundManagerRouter)
