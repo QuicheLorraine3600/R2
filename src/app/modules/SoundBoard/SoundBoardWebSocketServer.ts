@@ -1,7 +1,7 @@
 import WebSocket from "ws";
 import http from "http";
 
-import { AudioPlayer, createAudioResource } from "@discordjs/voice";
+import { AudioPlayer, createAudioResource, StreamType } from "@discordjs/voice";
 import { SOUNDBOARD_SERVER } from "./SoundBoardServer";
 import { Sound } from "./SoundManager";
 
@@ -18,7 +18,9 @@ export default class SoundBoardWebSocketServer {
 			ws.on('message', function message(data) {
 				const message = JSON.parse(data.toString())
 				if (message.type === "PlaySound" && message.soundId) {
-					const resource = createAudioResource("./public/sounds/" + SOUNDBOARD_SERVER.soundMap[message.soundId].src);
+					const resource = createAudioResource("./public/sounds/" + SOUNDBOARD_SERVER.soundMap[message.soundId].src, {
+						inputType: StreamType.OggOpus,
+					});
 					audioPlayer.play(resource)
 				} else if (message.type === "StopSound") {
 					audioPlayer.stop()
