@@ -13,11 +13,13 @@ import ScheduleMessage from "./src/ScheduleMessage";
 import Connect from "./src/Connect"
 
 // TODO: Coup d'état
+// TODO: Gulag
 import Remorquer from "./src/Remorquer"
 import CrazyFrog from "./src/CrazyFrog"
 import Overwatch from "./src/Overwatch"
 import LethalCompany from "./src/LethalCompany"
 import Send from "./src/Send"
+import Play from "./src/Play"
 
 export default List<Command>([
 	new Help(),
@@ -34,5 +36,6 @@ export default List<Command>([
 	new CrazyFrog(),
 	new Overwatch(),
 	new LethalCompany(),
-	new Send()
+	new Send(),
+	new Play()
 ])

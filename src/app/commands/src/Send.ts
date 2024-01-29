@@ -20,7 +20,7 @@ export default class Send extends Command {
 
 		if (interaction.user.id === "321639963848343563") {
 			interaction.channel?.send(message)
-			interaction.reply({ content: "Code exécuté avec succès !", ephemeral: true })
+			interaction.reply({ content: "Message envoyé", ephemeral: true })
 		} else {
 			interaction.reply(":see_no_evil:")
 		}
