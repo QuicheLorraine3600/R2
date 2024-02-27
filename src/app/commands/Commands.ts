@@ -11,6 +11,7 @@ import FakeMessage from "./src/FakeMessage";
 import ScheduleMessage from "./src/ScheduleMessage";
 
 import Connect from "./src/Connect"
+import Rename from "./src/Rename";
 
 // TODO: Coup d'état
 // TODO: Gulag
@@ -37,5 +38,6 @@ export default List<Command>([
 	new Overwatch(),
 	new LethalCompany(),
 	new Send(),
-	new Play()
+	new Play(),
+	new Rename()
 ])
