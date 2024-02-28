@@ -5,6 +5,8 @@ import { AudioPlayer, createAudioResource, StreamType } from "@discordjs/voice";
 import { SOUNDBOARD_SERVER } from "./SoundBoardServer";
 import { Sound } from "./SoundManager";
 
+import play from "play-dl"
+
 export default class SoundBoardWebSocketServer {
 
 	public readonly wss: WebSocket.Server<typeof WebSocket, typeof http.IncomingMessage>
@@ -15,9 +17,16 @@ export default class SoundBoardWebSocketServer {
 		this.wss.on('connection', ws => {
 			ws.on('error', console.error);
 		
-			ws.on('message', function message(data) {
+			ws.on('message', async function message(data) {
 				const message = JSON.parse(data.toString())
 				if (message.type === "PlaySound" && message.soundId) {
+
+					// https://github.com/play-dl/play-dl
+					// let stream = await play.stream("https://www.youtube.com/watch?v=Zrly3QMUhoo")
+					// console.log(stream)
+					// const resource = createAudioResource(stream.stream, {
+					// 	inputType: stream.type
+					// })
 					const resource = createAudioResource("./public/sounds/" + SOUNDBOARD_SERVER.soundMap[message.soundId].src, {
 						inputType: StreamType.OggOpus,
 					});

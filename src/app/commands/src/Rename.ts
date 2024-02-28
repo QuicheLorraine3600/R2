@@ -27,9 +27,9 @@ export default class Rename extends Command {
 		if (channel instanceof TextChannel) {
 			const targetMember = await channel.guild.members.fetch(target.id)
 			targetMember.setNickname(newName).then(() => {
-				interaction.reply("Name modified !")
+				interaction.reply({ content: "Name modified !", ephemeral: true })
 			}).catch(() => {
-				interaction.reply("Missing permissions !")
+				interaction.reply({ content: "Missing permissions !", ephemeral: true })
 			})	
 		}
 	}

@@ -6,6 +6,8 @@ import Bot from "../../Bot";
 import { Command, Interaction } from "../Command";
 import { SOUNDBOARD_SERVER } from "../../modules/SoundBoard/SoundBoardServer";
 
+// import { Player } from "discord-player"
+
 // console.log(generateDependencyReport());
 
 export default class Connect extends Command {
@@ -28,6 +30,11 @@ export default class Connect extends Command {
 		const connection = connectToVoiceChannel(voiceChannel);
 		connection.subscribe(SOUNDBOARD_SERVER.audioPlayer)
 		interaction.reply("Salon actuel rejoint ! SoundBoard accessible ici: http://mathilde-hugues.art:8888/")
+
+		// https://www.npmjs.com/package/discord-player
+		// const player = new Player(bot.client)
+		// await player.extractors.loadDefault()
+		// player.play(voiceChannel, "duel of the fates")
 	}
 }
 
