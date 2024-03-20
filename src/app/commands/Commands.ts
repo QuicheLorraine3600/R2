@@ -21,6 +21,7 @@ import Overwatch from "./src/Overwatch"
 import LethalCompany from "./src/LethalCompany"
 import Send from "./src/Send"
 import Play from "./src/Play"
+import Delete from "./src/Delete"
 
 export default List<Command>([
 	new Help(),
@@ -39,5 +40,6 @@ export default List<Command>([
 	new LethalCompany(),
 	new Send(),
 	new Play(),
-	new Rename()
+	new Rename(),
+	new Delete()
 ])
